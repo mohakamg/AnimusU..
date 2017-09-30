@@ -1,0 +1,21 @@
+<div class="navbar">
+  <div class="logo">
+    <h2><%= link_to "A N I M U S - U", "#" %></h2>
+  </div>
+  <div class="links">
+    <ul>
+      <li><%= link_to 'MENS', '#' %></li>
+      <li><%= link_to 'WOMEN', '#' %></li>
+      <li><%= link_to 'SALE', '#' %></li>
+      <li><%= link_to 'LOGIN', '#' %></li>
+      <li><%= link_to 'BLOG', '#' %></li>
+    </ul>
+    <div class="search">
+      <%= form_tag '/' do %>
+        <%= text_field_tag :search_query, "", placeholder: "Search..." %>
+        <%= submit_tag "Go" ,class: "search-button" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

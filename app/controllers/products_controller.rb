@@ -1,5 +1,7 @@
 class ProductsController < InheritedResources::Base
 
+  protect_from_forgery except: [:amazon_product]
+
   def create
     @product = Product.new(product_params)
     #byebug

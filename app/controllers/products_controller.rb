@@ -2,7 +2,7 @@ class ProductsController < InheritedResources::Base
 
   def create
     @product = Product.new(product_params)
-    byebug
+    #byebug
     @product.tags = params[:product][:tags].split(",")
     @product.image_url = params[:product][:image_url].split(",")
     # @product.variants = params[:product][:tags][0].split(",")

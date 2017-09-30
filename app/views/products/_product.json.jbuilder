@@ -1,0 +1,2 @@
+json.extract! product, :id, :categories_id, :name, :price, :sale_price, :tags, :rentable, :description, :rentable_per_month_price, :exchange_price, :rentable_down_deposit, :product_reference_url, :visible, :handle, :vendor, :material, :variant_SKU, :avg_weight_gms, :service_provider, :service_type, :brand, :image_url, :variants, :color, :created_at, :updated_at
+json.url product_url(product, format: :json)

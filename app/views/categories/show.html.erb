@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product type:</strong>
+  <%= @category.product_type %>
+</p>
+
+<% if @category.category_upload.url %>
+  <p>
+    <strong>Category image:</strong>
+    <%= image_tag @category.category_upload.url %>
+  </p>
+<% end %>
+
+  <p>
+    <strong>Category image url:</strong>
+    <%= image_tag @category.category_image_url %>
+  </p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

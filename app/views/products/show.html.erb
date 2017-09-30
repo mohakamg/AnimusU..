@@ -1,0 +1,175 @@
+<p id="notice"><%= notice %></p>
+
+<% @product.product_images.each do |i| %>
+  <% if i.url.include? 'mp4' or i.url.include? 'ogg' or i.url.include? 'avi' or i.url.include? 'flv' or i.url.include? 'mov' %>
+    <%= video_tag i.url, controls: true, preload: 'none', size: "300x300" %>
+  <% else %>
+    <%= image_tag i.url %>
+  <% end %>
+<% end %>
+
+<% @product.image_url.each do |i| %>
+  <% if (i != nil) && ((i.include? 'https://') || (i.include? 'http://')) && !(i.include? 'bitmap')   %>
+    <% i = i.delete(' ') %>
+    <%= image_tag i %>
+  <% end %>
+<% end %>
+
+<p>
+  <strong>Categories:</strong>
+  <%= @product.category.product_type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= @product.sale_price %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <% @product.tags.each do |t| %>
+    <%= t %>
+    <% if @product.tags.count > 1 && t != @product.tags.last %>
+      ,
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Rentable:</strong>
+  <%= @product.rentable %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Rentable per month price:</strong>
+  <%= @product.rentable_per_month_price %>
+</p>
+
+<p>
+  <strong>Exchange price:</strong>
+  <%= @product.exchange_price %>
+</p>
+
+<p>
+  <strong>Rentable down deposit:</strong>
+  <%= @product.rentable_down_deposit %>
+</p>
+
+<p>
+  <strong>Product reference url:</strong>
+  <%= @product.product_reference_url %>
+</p>
+
+<p>
+  <strong>Visible:</strong>
+  <%= @product.visible %>
+</p>
+
+<p>
+  <strong>Handle:</strong>
+  <%= @product.handle %>
+</p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @product.vendor %>
+</p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @product.material %>
+</p>
+
+<p>
+  <strong>Variant sku:</strong>
+  <%= @product.variant_SKU %>
+</p>
+
+<p>
+  <strong>Avg weight gms:</strong>
+  <%= @product.avg_weight_gms %>
+</p>
+
+<p>
+  <strong>Service provider:</strong>
+  <%= @product.service_provider %>
+</p>
+
+<p>
+  <strong>Service type:</strong>
+  <%= @product.service_type %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @product.brand %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @product.image_url %>
+</p>
+
+<p>
+  <strong>Variants:</strong>
+  <%= @product.variants %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @product.color %>
+</p>
+
+<% if @product.reviews.count == 0 %>
+  <p><%= link_to "Like", toggleLike_path(@product) %> <%= @product.reviews.where(like: true).count %></p>
+<% else %>
+  <% if @product.reviews.where(user: current_user)[0].like %>
+    <p><%= link_to "Unlike", toggleLike_path(@product) %> <%= @product.reviews.where(like: true).count %></p>
+  <% else %>
+    <p><%= link_to "Like", toggleLike_path(@product) %> <%= @product.reviews.where(like: true).count %></p>
+  <% end %>
+<% end %>
+
+
+
+<% if @product.reviews.count > 0 %>
+  <hr>
+  <% @product.reviews.each do |r| %>
+    By <%= r.user.name %><br>
+    <%= r.comment %> <br>
+    Submitted <%= time_ago_in_words(r.updated_at) %> Ago <hr>
+  <% end %>
+<% end %>
+
+<div class="">
+  <% if user_signed_in? %>
+    <%= form_tag(add_review_path, method: :post) do %>
+      <div class="form-group">
+        <%= label_tag "Add A Review" %>
+        <%= text_field_tag :review, "", class: 'form-control' %>
+        <%= hidden_field_tag("id", @product.id, :id => @product.id) %>
+      </div>
+      <%= submit_tag "Add Review" %>
+    <% end %>
+  <% else %>
+    <p>You need To <%= link_to "login", new_user_session_path %> to add Reviews</p>
+  <% end %>
+</div>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

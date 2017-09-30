@@ -1,0 +1,21 @@
+<h1>Editing Product</h1>
+
+<% @product.product_images.each do |i| %>
+  <% if i.url.include? 'mp4' or i.url.include? 'ogg' or i.url.include? 'avi' or i.url.include? 'flv' or i.url.include? 'mov' %>
+    <%= video_tag i.url, controls: true, preload: 'none', size: "300x300" %>
+  <% else %>
+    <%= image_tag i.url %>
+  <% end %>
+<% end %>
+
+<% @product.image_url.each do |i| %>
+  <% if (i != nil) && ((i.include? 'https://') || (i.include? 'http://')) && !(i.include? 'bitmap')   %>
+    <% i = i.delete(' ') %>
+    <%= image_tag i %>
+  <% end %>
+<% end %>
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'Show', @product %> |
+<%= link_to 'Back', products_path %>

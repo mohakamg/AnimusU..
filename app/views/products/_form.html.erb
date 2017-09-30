@@ -1,0 +1,139 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+		<%= form.label "Choose Product Images: " %>
+		<%= form.file_field :product_images, multiple: true %>
+  </div>
+
+  <div class="field">
+    *<%= form.label "Category: " %>
+		<%= form.collection_select :category_id, Category.all, :id, :product_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :product_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :product_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sale_price %>
+    <%= form.text_field :sale_price, id: :product_sale_price %>
+  </div>
+
+  <div class="field">
+    *<%= form.label "Tags (Enter Seperating ','): " %>
+    <% tags_value = @product.tags.join(',') if @product.tags != nil %>
+    <%= form.text_field :tags, as: :array, label: 'Tags That Identify This Item', value: tags_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rentable %>
+    <%= form.check_box :rentable, id: :product_rentable %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :product_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rentable_per_month_price %>
+    <%= form.text_field :rentable_per_month_price, id: :product_rentable_per_month_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exchange_price %>
+    <%= form.text_field :exchange_price, id: :product_exchange_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rentable_down_deposit %>
+    <%= form.text_field :rentable_down_deposit, id: :product_rentable_down_deposit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_reference_url %>
+    <%= form.text_field :product_reference_url, id: :product_product_reference_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visible %>
+    <%= form.check_box :visible, id: :product_visible %>
+  </div>
+
+  <div class="field">
+    <%= form.label :handle %>
+    <%= form.text_field :handle, id: :product_handle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor %>
+    <%= form.text_field :vendor, id: :product_vendor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :material %>
+    <%= form.text_field :material, id: :product_material %>
+  </div>
+
+  <div class="field">
+    <%= form.label :variant_SKU %>
+    <%= form.text_field :variant_SKU, id: :product_variant_SKU %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avg_weight_gms %>
+    <%= form.text_field :avg_weight_gms, id: :product_avg_weight_gms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :service_provider %>
+    <%= form.text_field :service_provider, id: :product_service_provider %>
+  </div>
+
+  <div class="field">
+    <%= form.label :service_type %>
+    <%= form.text_field :service_type, id: :product_service_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, id: :product_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image_url %>
+    <% image_url_value = @product.image_url.join(',') if @product.image_url != nil %>
+    <%= form.text_field :image_url, as: :array, id: :product_image_url, value: image_url_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Variants: " %>
+    <%= form.collection_check_boxes :variants, Variant.all, :variant_type, :variant_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Colors: " %>
+		<%= form.collection_check_boxes :color, Color.all, :color, :color %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

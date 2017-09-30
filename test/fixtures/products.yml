@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  categories: one
+  name: MyString
+  price: 1.5
+  sale_price: 1.5
+  tags: MyString
+  rentable: false
+  description: MyString
+  rentable_per_month_price: 1.5
+  exchange_price: 1.5
+  rentable_down_deposit: 1.5
+  product_reference_url: MyString
+  visible: false
+  handle: MyString
+  vendor: MyString
+  material: MyString
+  variant_SKU: MyString
+  avg_weight_gms: 1.5
+  service_provider: MyString
+  service_type: MyString
+  brand: MyString
+  image_url: MyString
+  variants: MyString
+  color: MyString
+
+two:
+  categories: two
+  name: MyString
+  price: 1.5
+  sale_price: 1.5
+  tags: MyString
+  rentable: false
+  description: MyString
+  rentable_per_month_price: 1.5
+  exchange_price: 1.5
+  rentable_down_deposit: 1.5
+  product_reference_url: MyString
+  visible: false
+  handle: MyString
+  vendor: MyString
+  material: MyString
+  variant_SKU: MyString
+  avg_weight_gms: 1.5
+  service_provider: MyString
+  service_type: MyString
+  brand: MyString
+  image_url: MyString
+  variants: MyString
+  color: MyString

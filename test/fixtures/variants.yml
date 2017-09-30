@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  variant_type: MyString
+  categories: one
+
+two:
+  variant_type: MyString
+  categories: two

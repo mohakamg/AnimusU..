@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product: one
+  user: one
+  like: false
+  comment: MyString
+
+two:
+  product: two
+  user: two
+  like: false
+  comment: MyString

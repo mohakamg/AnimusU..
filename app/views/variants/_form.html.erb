@@ -1,0 +1,27 @@
+<%= form_with(model: variant, local: true) do |form| %>
+  <% if variant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(variant.errors.count, "error") %> prohibited this variant from being saved:</h2>
+
+      <ul>
+      <% variant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    *<%= form.label "Category: " %>
+		<%= form.collection_select :category_id, Category.all, :id, :product_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :variant_type %>
+    <%= form.text_field :variant_type, id: :variant_variant_type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

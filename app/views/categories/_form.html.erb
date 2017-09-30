@@ -1,0 +1,32 @@
+<%= form_with(model: category, local: true) do |form| %>
+  <% if category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :product_type %>
+    <%= form.text_field :product_type, id: :category_product_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Choose Category Image: " %>
+    <%= form.file_field :category_upload %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_image_url %>
+    <%= form.text_field :category_image_url, id: :category_category_image_url %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -58,14 +58,20 @@ for(var i=startPageNo;i<=lastPage;i++){
 							if (typeof title == 'undefined')
 								title = $html.find('#title');
 						title = title.innerText;
-						brand = $html.find('#brand')[0];
-						if (typeof brand != 'undefined')
-							brand = $html.find('#brand')[0].innerText;
-						price = $html.find('#priceblock_saleprice')[0];
-						if (typeof price == 'undefined');
-							price = $html.find('#priceblock_ourprice')[0]
-						price = price.innerText.replace('$','');
-						description = $html.find('#feature-bullets')[0].innerHTML;
+
+						// brand = $html.find('#brand')[0];
+						// if (typeof brand != 'undefined')
+						// 	brand = $html.find('#brand')[0].innerText;
+						// price = $html.find('#priceblock_saleprice')[0];
+						// if (typeof price == 'undefined');
+						// 	price = $html.find('#priceblock_ourprice')[0]
+						// price = price.innerText.replace('$','');
+						// description = $html.find('#feature-bullets')[0].innerHTML;
+
+						// For Books
+						price = $html.find('.a-color-price').innerText
+
+
 
 						console.log(title)
 						console.log(brand)

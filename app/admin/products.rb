@@ -25,22 +25,22 @@ index do
   column :category
   column :name
   column :price
-  column :sale_price
+  # column :sale_price
   column :description
-  column :rentable
+  # column :rentable
   column :rentable_per_month_price
-  column :rentable_down_deposit
-  column :product_reference_url
-  column :visible
-  column :handle
-  column :vendor
-  column :material
-  column :variant_SKU
-  column :avg_weight_gms
-  column :service_provider
-  column :service_type
+  # column :rentable_down_deposit
+  # column :product_reference_url
+  # column :visible
+  # column :handle
+  # # column :vendor
+  # # column :material
+  # # column :variant_SKU
+  # # column :avg_weight_gms
+  # # column :service_provider
+  # # column :service_type
   column :brand
-  column :image_url
+  # column :image_url
   column :tags
   column :variants
   column :color

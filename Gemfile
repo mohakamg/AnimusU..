@@ -48,7 +48,7 @@ gem 'carrierwave'
 gem 'figaro'
 #Active admin
 gem 'activeadmin', github: 'activeadmin'
-gem 'active_admin_flat_skin'
+gem "active_material", github: "vigetlabs/active_material"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

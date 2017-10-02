@@ -15,6 +15,8 @@ permit_params :category_id,:name,:price,:sale_price,:description, :rentable, :re
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+preserve_default_filters!
+filter :category, as: :check_boxes, collection: proc { Category.pluck(:product_type, :id) }
 
 index do
   selectable_column

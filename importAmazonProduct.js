@@ -80,7 +80,7 @@ for(var i=startPageNo;i<=lastPage;i++){
 						console.log(totalImg)
 						console.log(reference_url)
 
-						$.post( "https://animusu.herokuapp.com/amazon_product", { p_type: "Watch", price: price, brand: brand, description: description, title: title, images: totalImg, reference_url: reference_url, tags: ["Amazon Import"], variants: [] } );
+						$.post( "https://thecollection.herokuapp.com/amazon_product", { p_type: "Watch", price: price, brand: brand, description: description, title: title, images: totalImg, reference_url: reference_url, tags: ["Amazon Import"], variants: [] } );
 
 				});
 			});

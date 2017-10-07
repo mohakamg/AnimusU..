@@ -57,7 +57,7 @@ class ProductsController < InheritedResources::Base
     reference_url = params[:reference_url]
     #tags = params[:tags]
     p_type = params[:p_type]
-    variants = params[:variants].split(',')
+    variants = params[:variants]
     # byebug
     p = Product.new(category: Category.where(product_type: p_type)[0], price: price, name: title, description: description, brand: brand, image_url: images, product_reference_url: reference_url)
     p.price = p.price-1
@@ -77,11 +77,12 @@ class ProductsController < InheritedResources::Base
     end
     if p.save
       variants.each do |v|
+        puts v
         if v != ""
           if Variant.find_by_variant_type(v) == nil
             z = Variant.new
             z.variant_type = v
-            z.category = Category.find(params[:product][:category_id])
+            z.category = Category.where(product_type: p_type)[0]
             z.save
             p.variants << z
           else

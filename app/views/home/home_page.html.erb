@@ -52,8 +52,8 @@
           <div class="make3D">
               <div class="product-front">
                   <div class="shadow"></div>
-                  <% if p.product_images[0] != nil %>
-                    <%= image_tag p.product_images[0] %>
+                  <% if p.image_url[0] != nil %>
+                    <%= image_tag p.image_url[0] %>
                   <% end %>
                   <div class="image_overlay"></div>
                   <div class="add_to_cart">Add to cart</div>
@@ -76,7 +76,6 @@
                           <% if (i != nil) && ((i.include? 'https://') || (i.include? 'http://')) && !(i.include? 'bitmap')   %>
                             <% i = i.delete(' ') %>
                             <li><%= image_tag i %></li>
-                            <%= image_tag i %>
                           <% end %>
                         <% end %>
                       </ul>

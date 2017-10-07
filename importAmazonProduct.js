@@ -59,17 +59,17 @@ for(var i=startPageNo;i<=lastPage;i++){
 								title = $html.find('#title');
 						title = title.innerText;
 
-						// brand = $html.find('#brand')[0];
-						// if (typeof brand != 'undefined')
-						// 	brand = $html.find('#brand')[0].innerText;
-						// price = $html.find('#priceblock_saleprice')[0];
-						// if (typeof price == 'undefined');
-						// 	price = $html.find('#priceblock_ourprice')[0]
-						// price = price.innerText.replace('$','');
-						// description = $html.find('#feature-bullets')[0].innerHTML;
+						brand = $html.find('#brand')[0];
+						if (typeof brand != 'undefined')
+							brand = $html.find('#brand')[0].innerText;
+						price = $html.find('#priceblock_saleprice')[0];
+						if (typeof price == 'undefined');
+							price = $html.find('#priceblock_ourprice')[0]
+						price = price.innerText.replace('$','');
+						description = $html.find('#feature-bullets')[0].innerHTML;
 
 						// For Books
-						price = $html.find('.a-color-price').innerText
+						// price = $html.find('.a-color-price').innerText
 
 
 
@@ -80,7 +80,7 @@ for(var i=startPageNo;i<=lastPage;i++){
 						console.log(totalImg)
 						console.log(reference_url)
 
-						$.post( "https://thecollection.herokuapp.com/amazon_product", { p_type: "Watch", price: price, brand: brand, description: description, title: title, images: totalImg, reference_url: reference_url, tags: ["Amazon Import"], variants: [] } );
+						$.post( "https://thecollection.herokuapp.com/amazon_product", { p_type: "Watch", price: price, brand: brand, description: description, title: title, images: totalImg, reference_url: reference_url, variants: ["Metal","Leather"] } );
 
 				});
 			});

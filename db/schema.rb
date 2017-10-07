@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930201850) do
+ActiveRecord::Schema.define(version: 20171007203502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20170930201850) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "ailes", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_ailes_on_product_id"
+    t.index ["variant_id"], name: "index_ailes_on_variant_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "product_type"
     t.string "category_image_url"
@@ -67,7 +76,6 @@ ActiveRecord::Schema.define(version: 20170930201850) do
     t.string "name", null: false
     t.float "price", null: false
     t.float "sale_price"
-    t.string "tags", array: true
     t.boolean "rentable", default: true
     t.string "description", null: false
     t.float "rentable_per_month_price"
@@ -84,7 +92,6 @@ ActiveRecord::Schema.define(version: 20170930201850) do
     t.string "service_type"
     t.string "brand"
     t.string "image_url", array: true
-    t.string "variants", array: true
     t.string "color", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,6 +108,12 @@ ActiveRecord::Schema.define(version: 20170930201850) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_reviews_on_product_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -133,6 +146,8 @@ ActiveRecord::Schema.define(version: 20170930201850) do
     t.index ["category_id"], name: "index_variants_on_category_id"
   end
 
+  add_foreign_key "ailes", "products"
+  add_foreign_key "ailes", "variants"
   add_foreign_key "colors", "categories"
   add_foreign_key "products", "categories"
   add_foreign_key "reviews", "products"

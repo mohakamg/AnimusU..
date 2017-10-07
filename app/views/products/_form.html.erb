@@ -36,11 +36,6 @@
     <%= form.text_field :sale_price, id: :product_sale_price %>
   </div>
 
-  <div class="field">
-    *<%= form.label "Tags (Enter Seperating ','): " %>
-    <% tags_value = @product.tags.join(',') if @product.tags != nil %>
-    <%= form.text_field :tags, as: :array, label: 'Tags That Identify This Item', value: tags_value %>
-  </div>
 
   <div class="field">
     <%= form.label :rentable %>
@@ -125,7 +120,8 @@
 
   <div class="field">
     <%= form.label "Variants: " %>
-    <%= form.collection_check_boxes :variants, Variant.all, :variant_type, :variant_type %>
+    <% variants = @product.variants.join(',') if @product.variants != nil %>
+    <%= form.text_field :variants, value: variants %>
   </div>
 
   <div class="field">

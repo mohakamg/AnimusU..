@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -33,90 +34,7 @@
 
 
 
-    <div id="wrapper">
-    <div class="cart-icon-top">
-    </div>
-
-    <div class="cart-icon-bottom">
-    </div>
-
-    <div id="checkout">
-    	CHECKOUT
-    </div>
-
-    <div id="info">
-    	<p class="i1">Change It!</p>
-    <p>    Exchange It | <a href="#" style="color:#ea4c89" target="_blank">Rent It</a> | <a style="color:#2aa9e0" href="#" target="_blank">Own It</a></p>
-    </div>
-
-    <div id="header">
-    	<ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">BRANDS</a></li>
-            <li><a href="">DESIGNERS</a></li>
-            <li><a href="">CONTACT</a></li>
-        </ul>
-    </div>
-
-    <div id="sidebar">
-    	<h3>CART</h3>
-        <div id="cart">
-        	<span class="empty">No items in cart.</span>
-        </div>
-
-        <h3>CATEGORIES</h3>
-        <div class="checklist categories">
-        	<ul>
-            	<li><a href=""><span></span>New Arivals</a></li>
-                <li><a href=""><span></span>Accesories</a></li>
-                <li><a href=""><span></span>Bags</a></li>
-                <li><a href=""><span></span>Dressed</a></li>
-                <li><a href=""><span></span>Jackets</a></li>
-                <li><a href=""><span></span>jewelry</a></li>
-                <li><a href=""><span></span>Shoes</a></li>
-                <li><a href=""><span></span>Shirts</a></li>
-                <li><a href=""><span></span>Sweaters</a></li>
-                <li><a href=""><span></span>T-shirts</a></li>
-            </ul>
-        </div>
-
-        <h3>COLORS</h3>
-        <div class="checklist colors">
-        	<ul>
-            	<li><a href=""><span></span>Beige</a></li>
-                <li><a href=""><span style="background:#222"></span>Black</a></li>
-                <li><a href=""><span style="background:#6e8cd5"></span>Blue</a></li>
-                <li><a href=""><span style="background:#f56060"></span>Brown</a></li>
-                <li><a href=""><span style="background:#44c28d"></span>Green</a></li>
-            </ul>
-
-            <ul>
-            	<li><a href=""><span style="background:#999"></span>Grey</a></li>
-                <li><a href=""><span style="background:#f79858"></span>Orange</a></li>
-                <li><a href=""><span style="background:#b27ef8"></span>Purple</a></li>
-                <li><a href=""><span style="background:#f56060"></span>Red</a></li>
-                <li><a href=""><span style="background:#fff;border: 1px solid #e8e9eb;width:13px;height:13px;"></span>White</a></li>
-            </ul>
-        </div>
-
-        <h3>SIZES</h3>
-        <div class="checklist sizes">
-        	<ul>
-            	<li><a href=""><span></span>XS</a></li>
-                <li><a href=""><span></span>S</a></li>
-                <li><a href=""><span></span>M</a></li>
-            </ul>
-
-            <ul>
-            	<li><a href=""><span></span>L</a></li>
-                <li><a href=""><span></span>XL</a></li>
-                <li><a href=""><span></span>XXL</a></li>
-            </ul>
-        </div>
-
-         <h3>PRICE RANGE</h3>
-         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/price-range.png" alt="" />
-    </div>
+    <%= render 'layouts/navbar' %>
 
     <% if notice %>
       <p class="notice"><%= notice %></p>

@@ -35,15 +35,6 @@
   <%= @product.sale_price %>
 </p>
 
-<p>
-  <strong>Tags:</strong>
-  <% @product.tags.each do |t| %>
-    <%= t %>
-    <% if @product.tags.count > 1 && t != @product.tags.last %>
-      ,
-    <% end %>
-  <% end %>
-</p>
 
 <p>
   <strong>Rentable:</strong>

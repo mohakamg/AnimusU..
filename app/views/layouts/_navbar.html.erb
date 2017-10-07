@@ -1,21 +1,20 @@
-<div class="navbar">
-  <div class="logo">
-    <h2><%= link_to "A N I M U S - U", "#" %></h2>
+<div id="navbar">
+  <ul>
+        <li><a href="">HOME</a></li>
+        <li><a href="">HOT ITEMS</a></li>
+        <li><a href="">BLOG</a></li>
+        <li><a href="">ABOUT US</a></li>
+
+  </ul>
+
+  <div>
+    <p id="logo">CHANGE IT!</p>
+    <p>Exchange It | <a href="#" style="color:#ea4c89">Rent It</a> | <a style="color:#2aa9e0" href="#">Own It</a></p>
   </div>
-  <div class="links">
-    <ul>
-      <li><%= link_to 'MENS', '#' %></li>
-      <li><%= link_to 'WOMEN', '#' %></li>
-      <li><%= link_to 'SALE', '#' %></li>
-      <li><%= link_to 'LOGIN', '#' %></li>
-      <li><%= link_to 'BLOG', '#' %></li>
-    </ul>
-    <div class="search">
-      <%= form_tag '/' do %>
-        <%= text_field_tag :search_query, "", placeholder: "Search..." %>
-        <%= submit_tag "Go" ,class: "search-button" %>
-      <% end %>
-    </div>
-  </div>
+
+  <ul class="right">
+    <li><%= link_to "LOGIN", '#' %></li>
+    <li><%= link_to "CART", '#' %></li>
+  </ul>
 
 </div>

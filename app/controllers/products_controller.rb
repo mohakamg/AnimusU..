@@ -5,13 +5,27 @@ class ProductsController < InheritedResources::Base
   def create
     @product = Product.new(product_params)
     #byebug
-    @product.tags = params[:product][:tags].split(",")
     @product.image_url = params[:product][:image_url].split(",")
     # @product.variants = params[:product][:tags][0].split(",")
     # @product.colors = params[:product][:tags][0].split(",")
     # @product.category = Category.where(product_type: params[:product][:category_id])[0]
+    variants = params[:product][:variants].split(",")
+    byebug
     if @product.save
       notice = "Product Saved Successfully"
+      variants.each do |v|
+        if v != ""
+          if Variant.find_by_variant_type(v) == nil
+            z = Variant.new
+            z.variant_type = v
+            z.category = Category.find(params[:product][:category_id])
+            z.save
+            @product.variants << z
+          else
+            @product.variants << Variant.find_by_variant_type(v)
+          end
+        end
+      end
       redirect_to @product
     else
       notice = "Save Failed"
@@ -22,8 +36,8 @@ class ProductsController < InheritedResources::Base
   def update
     @product = Product.find(params[:id])
     @product.update(product_params)
-    @product.tags = params[:product][:tags].split(",")
-    byebug
+    #@product.tags = params[:product][:tags].split(",")
+    #byebug
     @product.image_url = params[:product][:image_url].split(",")
     if @product.save
       notice= "Successfully Updated Product"
@@ -41,14 +55,14 @@ class ProductsController < InheritedResources::Base
     brand = params[:brand]
     images = params[:images].split(',')
     reference_url = params[:reference_url]
-    tags = params[:tags]
+    #tags = params[:tags]
     p_type = params[:p_type]
-    variants = params[:variants]
+    variants = params[:variants].split(',')
     # byebug
     p = Product.new(category: Category.where(product_type: p_type)[0], price: price, name: title, description: description, brand: brand, image_url: images, product_reference_url: reference_url)
     p.price = p.price-1
-    p.tags = tags
-    p.variants = variants
+    #p.tags = tags
+
     p.rentable = true
     if p.price > 10 && p.price < 40
       p.rentable_per_month_price = p.price/36
@@ -62,6 +76,19 @@ class ProductsController < InheritedResources::Base
       p.rentable_per_month_price = p.price/(7*12)
     end
     if p.save
+      variants.each do |v|
+        if v != ""
+          if Variant.find_by_variant_type(v) == nil
+            z = Variant.new
+            z.variant_type = v
+            z.category = Category.find(params[:product][:category_id])
+            z.save
+            p.variants << z
+          else
+            p.variants << Variant.find_by_variant_type(v)
+          end
+        end
+      end
       render html: 'Saved'
     else
       render html: 'Failed'
@@ -91,6 +118,6 @@ class ProductsController < InheritedResources::Base
   private
 
     def product_params
-      params.require(:product).permit(:category_id, :name, :price, :sale_price, :rentable, :description, :rentable_per_month_price, :exchange_price, :rentable_down_deposit, :product_reference_url, :visible, :handle, :vendor, :material, :variant_SKU, :avg_weight_gms, :service_provider, :service_type, :brand, :tags, :image_url, :product_images => [], :variants => [], :color => [])
+      params.require(:product).permit(:category_id, :name, :price, :sale_price, :rentable, :description, :rentable_per_month_price, :exchange_price, :rentable_down_deposit, :product_reference_url, :visible, :handle, :vendor, :material, :variant_SKU, :avg_weight_gms, :service_provider, :service_type, :brand)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171007203502) do
+ActiveRecord::Schema.define(version: 20171008003353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20171007203502) do
     t.string "name", null: false
     t.float "price", null: false
     t.float "sale_price"
+    t.string "tags", array: true
     t.boolean "rentable", default: true
     t.string "description", null: false
     t.float "rentable_per_month_price"
@@ -92,10 +93,12 @@ ActiveRecord::Schema.define(version: 20171007203502) do
     t.string "service_type"
     t.string "brand"
     t.string "image_url", array: true
+    t.string "variants", array: true
     t.string "color", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "product_images", array: true
+    t.string "gender"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
@@ -108,6 +111,15 @@ ActiveRecord::Schema.define(version: 20171007203502) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_reviews_on_product_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "shacks", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_shacks_on_product_id"
+    t.index ["tag_id"], name: "index_shacks_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -152,5 +164,7 @@ ActiveRecord::Schema.define(version: 20171007203502) do
   add_foreign_key "products", "categories"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
+  add_foreign_key "shacks", "products"
+  add_foreign_key "shacks", "tags"
   add_foreign_key "variants", "categories"
 end

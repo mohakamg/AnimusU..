@@ -1,20 +1,36 @@
-<div id="navbar">
-  <ul>
-        <li><a href="">HOME</a></li>
-        <li><a href="">HOT ITEMS</a></li>
-        <li><a href="">BLOG</a></li>
-        <li><a href="">ABOUT US</a></li>
-
+<div class="top-nav">
+  <ul class="left-side">
+    <li><%= link_to '*FREE TWO-DAY SHIPPING AND RETURNS', '#' %></li>
   </ul>
+  <ul class="right-side">
+    <li><%= link_to 'THANKSGIVING SPECIAL SALE', '#' %></li>
+  </ul>
+</div>
 
-  <div>
-    <p id="logo">CHANGE IT!</p>
-    <p>Exchange It | <a href="#" style="color:#ea4c89">Rent It</a> | <a style="color:#2aa9e0" href="#">Own It</a></p>
+<div class="bottom-nav">
+  <h1 class="logo">
+    ANIMUS
+  </h1>
+  <div class="nav-links">
+    <div class="btn-group">
+      <button type="button" class="btn btn-none">HOME</button>
+      <button type="button" class="btn btn-none dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+      </div>
+    </div>
+    <%= link_to 'BLOG', '#' %>
+    <%= link_to 'COMMUNITIES', '#' %>
   </div>
-
-  <ul class="right">
-    <li><%= link_to "LOGIN", '#' %></li>
-    <li><%= link_to "CART", '#' %></li>
-  </ul>
-
+  <div class="nav-actions">
+    <span class="glyphicon glyphicon-search" aria-hidden="true"> Search</span>
+    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+  </div>
 </div>

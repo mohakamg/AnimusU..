@@ -113,6 +113,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender, id: :product_gender %>
+  </div>
+
+  <div class="field">
     <%= form.label :image_url %>
     <% image_url_value = @product.image_url.join(',') if @product.image_url != nil %>
     <%= form.text_field :image_url, as: :array, id: :product_image_url, value: image_url_value %>
@@ -120,8 +125,14 @@
 
   <div class="field">
     <%= form.label "Variants: " %>
-    <% variants = @product.variants.join(',') if @product.variants != nil %>
+    <% variants = @product.variants.pluck('variant_type').join(',') if @product.variants != nil %>
     <%= form.text_field :variants, value: variants %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Tags: " %>
+    <% tags = @product.tags.pluck('tag').join(',') if @product.tags != nil %>
+    <%= form.text_field :tag, value: tags %>
   </div>
 
   <div class="field">

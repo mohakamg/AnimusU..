@@ -10,9 +10,11 @@ class ProductsController < InheritedResources::Base
     # @product.colors = params[:product][:tags][0].split(",")
     # @product.category = Category.where(product_type: params[:product][:category_id])[0]
     variants = params[:product][:variants].split(",")
-    byebug
+    tags = params[:product][:tag].split(",")
+    #byebug
     if @product.save
       notice = "Product Saved Successfully"
+
       variants.each do |v|
         if v != ""
           if Variant.find_by_variant_type(v) == nil
@@ -26,6 +28,19 @@ class ProductsController < InheritedResources::Base
           end
         end
       end
+      tags.each do |t|
+        if t != ""
+          if Tag.find_by_tag(t) == nil
+            z = Tag.new
+            z.tag = t
+            z.save
+            @product.tags << z
+          else
+            @product.tags << Tag.find_by_tag(t)
+          end
+        end
+      end
+
       redirect_to @product
     else
       notice = "Save Failed"
@@ -39,6 +54,33 @@ class ProductsController < InheritedResources::Base
     #@product.tags = params[:product][:tags].split(",")
     #byebug
     @product.image_url = params[:product][:image_url].split(",")
+    variants = params[:product][:variants].split(",")
+    tags = params[:product][:tag].split(",")
+    variants.each do |v|
+      if v != ""
+        if Variant.find_by_variant_type(v) == nil
+          z = Variant.new
+          z.variant_type = v
+          z.category = Category.find(params[:product][:category_id])
+          z.save
+          @product.variants << z
+        else
+          @product.variants << Variant.find_by_variant_type(v)
+        end
+      end
+    end
+    tags.each do |t|
+      if t != ""
+        if Tag.find_by_tag(t) == nil
+          z = Tag.new
+          z.tag = t
+          z.save
+          @product.tags << z
+        else
+          @product.tags << Tag.find_by_tag(t)
+        end
+      end
+    end
     if @product.save
       notice= "Successfully Updated Product"
       redirect_to @product
@@ -55,11 +97,12 @@ class ProductsController < InheritedResources::Base
     brand = params[:brand]
     images = params[:images].split(',')
     reference_url = params[:reference_url]
-    #tags = params[:tags]
+    tags = params[:tags]
     p_type = params[:p_type]
     variants = params[:variants]
+    gender = params[:gender]
     # byebug
-    p = Product.new(category: Category.where(product_type: p_type)[0], price: price, name: title, description: description, brand: brand, image_url: images, product_reference_url: reference_url)
+    p = Product.new(category: Category.where(product_type: p_type)[0], price: price, name: title, description: description, brand: brand, image_url: images, product_reference_url: reference_url, gender: gender)
     p.price = p.price-1
     #p.tags = tags
 
@@ -76,8 +119,8 @@ class ProductsController < InheritedResources::Base
       p.rentable_per_month_price = p.price/(7*12)
     end
     if p.save
+
       variants.each do |v|
-        puts v
         if v != ""
           if Variant.find_by_variant_type(v) == nil
             z = Variant.new
@@ -90,6 +133,20 @@ class ProductsController < InheritedResources::Base
           end
         end
       end
+
+      tags.each do |t|
+        if t != ""
+          if Tag.find_by_tag(t) == nil
+            z = Tag.new
+            z.tag = t
+            z.save
+            p.tags << z
+          else
+            p.tags << Tag.find_by_tag(t)
+          end
+        end
+      end
+
       render html: 'Saved'
     else
       render html: 'Failed'

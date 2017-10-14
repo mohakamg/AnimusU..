@@ -15,5 +15,7 @@ Rails.application.routes.draw do
 
   post '/amazon_product/' => 'products#amazon_product'
 
+  get 'product_images/:category_name/' => 'products#product_images'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -172,6 +172,21 @@ class ProductsController < InheritedResources::Base
     end
   end
 
+  def product_images
+    category_name = params[:category_name]
+    if Category.find_by_product_type(category_name) != nil
+      c = Category.find_by_product_type(category_name)
+      respond_to do |f|
+        f.json {render json: c.products.to_json(:only => [:id, :image_url])}
+      end
+    else
+      respond_to do |f|
+        f.html {render html: "No such Category Exists"}
+        f.json {render json: {"error":"no such cateogry"}}
+      end
+    end
+  end
+
 
   private
 
